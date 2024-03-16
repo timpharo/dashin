@@ -1,0 +1,85 @@
+spring:
+  config:
+    activate:
+      on-profile: default
+
+todo:
+  url: https://api.todoist.com/rest/v2
+  authToken: fd88858cc0f7d9f1cc84869b13f49858df76eb9b
+  paths:
+    tasks: /tasks
+    projects: /projects
+  listId:
+    shopping: 1771179916
+    personal: 1771179915
+    work: 1771179917
+    learn: 1808995721
+    inbox: 1771179914
+  displayConfig:
+      shopping:
+        days: Monday-Sunday
+        times: 00:00 - 23:59
+      personal:
+        days: Monday-Sunday
+        times: 00:00 - 23:59
+
+stock:
+  url: https://api.polygon.io/v2
+  authToken: HHhqdT6OjkDOm_Q3_nmimw4b2iFA38yK
+  paths:
+    prevClose: /aggs/ticker/%s/prev
+  equity:
+    tickerId: BKNG
+    tickerCurrency: USD
+    targetCurrency: GBP
+    vestingAmount: 5
+    vestingDate: 2024-03-04T00:00:00
+    cacheSeconds: 28800 # 8 hours
+
+currency:
+  url: https://api.freecurrencyapi.com/v1
+  authToken: fca_live_MR3LdZPBr82XRjdSDbyFdt2zcSnSHJlqIExg7lsQ
+  cacheSeconds: 43200 # 12 hours
+  paths:
+    latest: /latest
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: integration
+
+todo:
+  url: https://localhost-integration:1111
+  authToken: int-auth-token
+  listId:
+    shopping: 11111
+    personal: 22222
+    work: 33333
+    learn: 44444
+    inbox: 55555
+  paths:
+    tasks: /tasks
+    projects: /projects
+
+stock:
+  url: https://localhost-integration:2222
+  authToken: int-auth-token
+  paths:
+    prevClose: /prev-close
+  equity:
+    tickerId: FAKE
+    tickerCurrency: USD
+    targetCurrency: GBP
+    vestingAmount: 1
+    vestingDate: 2050-01-01T00:00:00
+    cacheSeconds: 1
+
+currency:
+  url: https://localhost-integration:3333
+  authToken: int-auth-token
+  cacheSeconds: 1
+  paths:
+    latest: /latest
+
