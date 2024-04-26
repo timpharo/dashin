@@ -5,7 +5,7 @@ import {For} from "solid-js";
 const TodoItem: Component = (name: String, todo: TodoItemConfig[]) => {
   return (
     <div>
-      <h2>{ name } todo list</h2>
+      <h2>{ name.charAt(0).toUpperCase() + name.slice(1).toLowerCase() } todo list</h2>
         <Switch>
             <Match when={todo.length == 0}>
                 <p>No items</p>

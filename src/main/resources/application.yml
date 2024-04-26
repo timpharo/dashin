@@ -20,7 +20,16 @@ todo:
         days: Monday-Sunday
         times: 00:00 - 23:59
       personal:
-        days: Monday-Sunday
+        days: Sunday
+        times: 00:00 - 23:59
+      work:
+        days: Sunday
+        times: 00:00 - 23:59
+      learn:
+        days: Sunday
+        times: 00:00 - 23:59
+      inbox:
+        days: Sunday
         times: 00:00 - 23:59
 
 stock:
@@ -32,8 +41,8 @@ stock:
     tickerId: BKNG
     tickerCurrency: USD
     targetCurrency: GBP
-    vestingAmount: 5
-    vestingDate: 2024-03-04T00:00:00
+    vestingAmount: 10
+    vestingDate: 2025-03-04T00:00:00
     cacheSeconds: 28800 # 8 hours
 
 currency:
