@@ -18,9 +18,9 @@ public class CurrencyRepository implements CurrencyConverter {
     private final String latestPath;
 
     public CurrencyRepository(CurrencyConfig config) {
-        this.webClient = WebClient.create(config.url());
-        this.authToken = config.authToken();
-        this.latestPath = config.latestPath();
+        this.webClient = WebClient.create(config.getUrl());
+        this.authToken = config.getAuthToken();
+        this.latestPath = config.getLatestPath();
     }
 
     public Optional<CurrencyLatest> getLatestExchangeRate(String baseCurrency, String targetCurrency){

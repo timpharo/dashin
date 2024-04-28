@@ -1,7 +1,6 @@
 package co.uk.pbnj.dashin.controller.v1;
 
 import co.uk.pbnj.dashin.dto.Todo;
-import co.uk.pbnj.dashin.dto.TodoBuilder;
 import co.uk.pbnj.dashin.dto.TodoListType;
 import co.uk.pbnj.dashin.service.TodoService;
 import org.junit.jupiter.api.BeforeEach;
@@ -38,8 +37,8 @@ class TodoControllerIT {
     @ParameterizedTest
     @EnumSource(TodoListType.class)
     void getTodos(TodoListType type) {
-        Todo todo1 = TodoBuilder.builder().order(1).content("Task 1").description("Task 1 desc").build();
-        Todo todo2 = TodoBuilder.builder().order(2).content("Task 2").description("Task 2 desc").build();
+        Todo todo1 = Todo.builder().order(1).content("Task 1").description("Task 1 desc").build();
+        Todo todo2 = Todo.builder().order(2).content("Task 2").description("Task 2 desc").build();
         given(todoService.getList(type)).willReturn(List.of(todo1, todo2));
 
         client.get()

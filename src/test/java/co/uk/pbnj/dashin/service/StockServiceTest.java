@@ -2,7 +2,6 @@ package co.uk.pbnj.dashin.service;
 
 
 import co.uk.pbnj.dashin.StockConfig;
-import co.uk.pbnj.dashin.StockConfigBuilder;
 import co.uk.pbnj.dashin.dto.*;
 import co.uk.pbnj.dashin.repository.StockRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -48,7 +47,7 @@ class StockServiceTest {
 
     @BeforeEach
     void beforeEach() {
-        StockConfig stockConfig = StockConfigBuilder.builder()
+        StockConfig stockConfig = StockConfig.builder()
                 .equityTickerId(EQUITY_TICKER_ID)
                 .equityTickerCurrency(EQUITY_TICKER_CURRENCY)
                 .equityTargetCurrency(EQUITY_TARGET_CURRENCY)
@@ -64,15 +63,15 @@ class StockServiceTest {
 
     @Test
     void returnStockEquityCalculations() {
-        PrevCloseResult prevCloseResult = PrevCloseResultBuilder.builder()
+        PrevCloseResult prevCloseResult = PrevCloseResult.builder()
                 .open(OPEN_AMOUNT)
                 .close(CLOSE_AMOUNT)
                 .build();
-        PrevCloseStock prevCloseStock = PrevCloseStockBuilder.builder()
+        PrevCloseStock prevCloseStock = PrevCloseStock.builder()
                 .results(List.of(prevCloseResult))
                 .build();
         Optional<CurrencyLatest> currencyLatestOpt = Optional.of(
-                CurrencyLatestBuilder.builder()
+                CurrencyLatest.builder()
                         .currencyExchanges(Map.of(EQUITY_TARGET_CURRENCY, TARGET_CURRENCY_EXCHANGE_RATE))
                         .build()
         );
@@ -81,26 +80,26 @@ class StockServiceTest {
 
         StockEquityCalculation stockEquityCalculation = subject.getStockEquityCalculation();
 
-        assertThat(stockEquityCalculation.ticker()).isEqualTo(EQUITY_TICKER_ID);
-        assertThat(stockEquityCalculation.valueOpenDay()).isEqualTo(OPEN_AMOUNT * VESTING_AMOUNT);
-        assertThat(stockEquityCalculation.valueCloseDay()).isEqualTo(CLOSE_AMOUNT * VESTING_AMOUNT);
-        assertThat(stockEquityCalculation.exchangeRate()).isEqualTo(TARGET_CURRENCY_EXCHANGE_RATE);
-        assertThat(stockEquityCalculation.originalCurrency()).isEqualTo(EQUITY_TICKER_CURRENCY);
-        assertThat(stockEquityCalculation.targetCurrency()).isEqualTo(EQUITY_TARGET_CURRENCY);
-        assertThat(stockEquityCalculation.daysTillVest()).isEqualTo(FIXED_DAYS_TILL_VEST);
+        assertThat(stockEquityCalculation.getTicker()).isEqualTo(EQUITY_TICKER_ID);
+        assertThat(stockEquityCalculation.getValueOpenDay()).isEqualTo(OPEN_AMOUNT * VESTING_AMOUNT);
+        assertThat(stockEquityCalculation.getValueCloseDay()).isEqualTo(CLOSE_AMOUNT * VESTING_AMOUNT);
+        assertThat(stockEquityCalculation.getExchangeRate()).isEqualTo(TARGET_CURRENCY_EXCHANGE_RATE);
+        assertThat(stockEquityCalculation.getOriginalCurrency()).isEqualTo(EQUITY_TICKER_CURRENCY);
+        assertThat(stockEquityCalculation.getTargetCurrency()).isEqualTo(EQUITY_TARGET_CURRENCY);
+        assertThat(stockEquityCalculation.getDaysTillVest()).isEqualTo(FIXED_DAYS_TILL_VEST);
     }
 
     @Test
     void multipleCallsReturnsCachedStockEquityCalculations() {
-        PrevCloseResult prevCloseResult = PrevCloseResultBuilder.builder()
+        PrevCloseResult prevCloseResult = PrevCloseResult.builder()
                 .open(OPEN_AMOUNT)
                 .close(CLOSE_AMOUNT)
                 .build();
-        PrevCloseStock prevCloseStock = PrevCloseStockBuilder.builder()
+        PrevCloseStock prevCloseStock = PrevCloseStock.builder()
                 .results(List.of(prevCloseResult))
                 .build();
         Optional<CurrencyLatest> currencyLatestOpt = Optional.of(
-                CurrencyLatestBuilder.builder()
+                CurrencyLatest.builder()
                         .currencyExchanges(Map.of(EQUITY_TARGET_CURRENCY, TARGET_CURRENCY_EXCHANGE_RATE))
                         .build()
         );
@@ -125,11 +124,11 @@ class StockServiceTest {
 
     @Test
     void defaultExchangeRateTo1WhenCurrencyExchangeNotReturned() {
-        PrevCloseResult prevCloseResult = PrevCloseResultBuilder.builder()
+        PrevCloseResult prevCloseResult = PrevCloseResult.builder()
                 .open(OPEN_AMOUNT)
                 .close(CLOSE_AMOUNT)
                 .build();
-        PrevCloseStock prevCloseStock = PrevCloseStockBuilder.builder()
+        PrevCloseStock prevCloseStock = PrevCloseStock.builder()
                 .results(List.of(prevCloseResult))
                 .build();
         given(stockRepository.getPreviousClose(EQUITY_TICKER_ID)).willReturn(Optional.of(prevCloseStock));
@@ -137,13 +136,13 @@ class StockServiceTest {
 
         StockEquityCalculation stockEquityCalculation = subject.getStockEquityCalculation();
 
-        assertThat(stockEquityCalculation.ticker()).isEqualTo(EQUITY_TICKER_ID);
-        assertThat(stockEquityCalculation.valueOpenDay()).isEqualTo(OPEN_AMOUNT * VESTING_AMOUNT);
-        assertThat(stockEquityCalculation.valueCloseDay()).isEqualTo(CLOSE_AMOUNT * VESTING_AMOUNT);
-        assertThat(stockEquityCalculation.exchangeRate()).isEqualTo(DEFAULT_EXCHANGE_RATE);
-        assertThat(stockEquityCalculation.originalCurrency()).isEqualTo(EQUITY_TICKER_CURRENCY);
-        assertThat(stockEquityCalculation.targetCurrency()).isEqualTo(EQUITY_TARGET_CURRENCY);
-        assertThat(stockEquityCalculation.daysTillVest()).isEqualTo(FIXED_DAYS_TILL_VEST);
+        assertThat(stockEquityCalculation.getTicker()).isEqualTo(EQUITY_TICKER_ID);
+        assertThat(stockEquityCalculation.getValueOpenDay()).isEqualTo(OPEN_AMOUNT * VESTING_AMOUNT);
+        assertThat(stockEquityCalculation.getValueCloseDay()).isEqualTo(CLOSE_AMOUNT * VESTING_AMOUNT);
+        assertThat(stockEquityCalculation.getExchangeRate()).isEqualTo(DEFAULT_EXCHANGE_RATE);
+        assertThat(stockEquityCalculation.getOriginalCurrency()).isEqualTo(EQUITY_TICKER_CURRENCY);
+        assertThat(stockEquityCalculation.getTargetCurrency()).isEqualTo(EQUITY_TARGET_CURRENCY);
+        assertThat(stockEquityCalculation.getDaysTillVest()).isEqualTo(FIXED_DAYS_TILL_VEST);
     }
 
 }

@@ -105,10 +105,8 @@ class DisplayItemServiceTest {
         );
     }
 
-
-
     private static DisplayItem displayItem(String name, String type, String location) {
-        return DisplayItemBuilder.builder()
+        return DisplayItem.builder()
                 .name(name)
                 .type(type)
                 .location(location)

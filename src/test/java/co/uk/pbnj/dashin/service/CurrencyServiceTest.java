@@ -1,7 +1,6 @@
 package co.uk.pbnj.dashin.service;
 
 import co.uk.pbnj.dashin.dto.CurrencyLatest;
-import co.uk.pbnj.dashin.dto.CurrencyLatestBuilder;
 import co.uk.pbnj.dashin.repository.CurrencyRepository;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
@@ -36,7 +35,7 @@ class CurrencyServiceTest {
 
     @Test
     void callsRepositoryToRetrieveLatestExchangeRate() {
-        Optional<CurrencyLatest> currencyLatest = Optional.of(CurrencyLatestBuilder.builder().build());
+        Optional<CurrencyLatest> currencyLatest = Optional.of(CurrencyLatest.builder().build());
         given(currencyRepository.getLatestExchangeRate(BASE_CURRENCY, TARGET_CURRENCY)).willReturn(currencyLatest);
 
         Optional<CurrencyLatest> result = subject.getLatestExchangeRate(BASE_CURRENCY, TARGET_CURRENCY);
@@ -46,7 +45,7 @@ class CurrencyServiceTest {
 
     @Test
     void returnsCachedResultWhenRetrieveLatestExchangeRateCalled() {
-        Optional<CurrencyLatest> currencyLatest = Optional.of(CurrencyLatestBuilder.builder().build());
+        Optional<CurrencyLatest> currencyLatest = Optional.of(CurrencyLatest.builder().build());
         given(currencyRepository.getLatestExchangeRate(BASE_CURRENCY, TARGET_CURRENCY)).willReturn(currencyLatest);
         Optional<CurrencyLatest> previousResult = subject.getLatestExchangeRate(BASE_CURRENCY, TARGET_CURRENCY);
 
@@ -59,7 +58,7 @@ class CurrencyServiceTest {
 
     @Test
     void doesNotCachedResultWhenRetrieveLatestExchangeRateReturnsIsEmpty() {
-        Optional<CurrencyLatest> currencyLatest = Optional.of(CurrencyLatestBuilder.builder().build());
+        Optional<CurrencyLatest> currencyLatest = Optional.of(CurrencyLatest.builder().build());
         given(currencyRepository.getLatestExchangeRate(BASE_CURRENCY, TARGET_CURRENCY))
                 .willReturn(Optional.empty())
                 .willReturn(currencyLatest);

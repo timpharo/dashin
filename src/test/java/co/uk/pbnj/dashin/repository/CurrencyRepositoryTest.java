@@ -1,7 +1,6 @@
 package co.uk.pbnj.dashin.repository;
 
 import co.uk.pbnj.dashin.CurrencyConfig;
-import co.uk.pbnj.dashin.CurrencyConfigBuilder;
 import co.uk.pbnj.dashin.dto.CurrencyLatest;
 import okhttp3.HttpUrl;
 import okhttp3.mockwebserver.MockResponse;
@@ -29,9 +28,8 @@ class CurrencyRepositoryTest {
     void beforeEach() throws IOException {
         mockBackEnd = new MockWebServer();
         mockBackEnd.start();
-        String baseUrl = "http://localhost:%s".formatted(mockBackEnd.getPort());
-        CurrencyConfig config = CurrencyConfigBuilder.builder()
-                .url(baseUrl)
+        CurrencyConfig config = CurrencyConfig.builder()
+                .url(mockBackEnd.url("/").toString())
                 .authToken(AUTH_TOKEN)
                 .latestPath(LATEST_PATH)
                 .build();

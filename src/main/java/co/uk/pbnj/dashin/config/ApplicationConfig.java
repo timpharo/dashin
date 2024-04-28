@@ -22,7 +22,7 @@ public class ApplicationConfig {
     public Cache<String, CurrencyLatest> currencyExchangeRateCache(CurrencyConfig currencyConfig) {
         return CacheBuilder.newBuilder()
                 .initialCapacity(1)
-                .expireAfterAccess(Duration.ofSeconds(currencyConfig.cacheSeconds()))
+                .expireAfterAccess(Duration.ofSeconds(currencyConfig.getCacheSeconds()))
                 .build();
     }
 }

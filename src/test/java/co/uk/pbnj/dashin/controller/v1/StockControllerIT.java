@@ -1,7 +1,6 @@
 package co.uk.pbnj.dashin.controller.v1;
 
 import co.uk.pbnj.dashin.dto.StockEquityCalculation;
-import co.uk.pbnj.dashin.dto.StockEquityCalculationBuilder;
 import co.uk.pbnj.dashin.service.StockService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,7 +32,7 @@ class StockControllerIT {
 
     @Test
     void getStockEquityCalculation() {
-        StockEquityCalculation calculation = StockEquityCalculationBuilder.builder()
+        StockEquityCalculation calculation = StockEquityCalculation.builder()
                 .ticker("ticker")
                 .valueOpenDay(1.1)
                 .valueCloseDay(2.2)

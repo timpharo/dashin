@@ -1,7 +1,6 @@
 package co.uk.pbnj.dashin.repository;
 
 import co.uk.pbnj.dashin.TodoConfig;
-import co.uk.pbnj.dashin.TodoConfigBuilder;
 import co.uk.pbnj.dashin.dto.Project;
 import co.uk.pbnj.dashin.dto.Todo;
 import okhttp3.HttpUrl;
@@ -29,10 +28,9 @@ class TodoRepositoryTest {
     void beforeEach() throws IOException {
         mockBackEnd = new MockWebServer();
         mockBackEnd.start();
-        String baseUrl = "http://localhost:%s".formatted(mockBackEnd.getPort());
 
-        TodoConfig todoConfig = TodoConfigBuilder.builder()
-                .url(baseUrl)
+        TodoConfig todoConfig = TodoConfig.builder()
+                .url(mockBackEnd.url("/").toString())
                 .authToken(AUTH_TOKEN)
                 .tasksPath(TASKS_PATH)
                 .projectsPath(PROJECTS_PATH)

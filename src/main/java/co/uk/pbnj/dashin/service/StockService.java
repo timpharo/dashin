@@ -31,16 +31,16 @@ public class StockService {
     public StockService(StockRepository stockRepository, CurrencyService currencyService, StockConfig stockConfig, Clock clock) {
         this.stockRepository = stockRepository;
         this.currencyService = currencyService;
-        this.equityTickerId = stockConfig.equityTickerId();
-        this.vestingAmount = stockConfig.vestingAmount();
-        this.vestingDate = stockConfig.vestingDate();
-        this.equityTickerCurrency = stockConfig.equityTickerCurrency();
-        this.equityTargetCurrency = stockConfig.equityTargetCurrency();
+        this.equityTickerId = stockConfig.getEquityTickerId();
+        this.vestingAmount = stockConfig.getVestingAmount();
+        this.vestingDate = stockConfig.getVestingDate();
+        this.equityTickerCurrency = stockConfig.getEquityTickerCurrency();
+        this.equityTargetCurrency = stockConfig.getEquityTargetCurrency();
         this.clock = clock;
 
         this.stockEquityCalculationSupplier = Suppliers.memoizeWithExpiration(
                 this::calculateStockEquity,
-                stockConfig.equityTickerCacheSeconds(), SECONDS);
+                stockConfig.getEquityTickerCacheSeconds(), SECONDS);
     }
 
     public StockEquityCalculation getStockEquityCalculation() {
@@ -54,22 +54,25 @@ public class StockService {
             Optional<CurrencyLatest> latestExchangeRate = currencyService.getLatestExchangeRate(equityTickerCurrency, equityTargetCurrency);
 
             PrevCloseStock prevCloseStock = previousCloseOpt.get();
-            PrevCloseResult prevCloseResult = prevCloseStock.results().get(0);
+            PrevCloseResult prevCloseResult = prevCloseStock.getResults().get(0);
 
-            double open = (prevCloseResult.open() * vestingAmount);
-            double close = (prevCloseResult.close() * vestingAmount);
+            double open = (prevCloseResult.getOpen() * vestingAmount);
+            double close = (prevCloseResult.getClose() * vestingAmount);
 
-            double exchangeRate = latestExchangeRate.map(it -> it.currencyExchanges().get(equityTargetCurrency)).orElse(DEFAULT_EXCHANGE_RATE);
+            double exchangeRate = latestExchangeRate.map(it ->
+                    it.getCurrencyExchanges().get(equityTargetCurrency))
+                                            .orElse(DEFAULT_EXCHANGE_RATE);
 
-            return StockEquityCalculationBuilder.builder()
-                    .ticker(equityTickerId)
-                    .valueOpenDay(open)
-                    .valueCloseDay(close)
-                    .exchangeRate(exchangeRate)
-                    .originalCurrency(equityTickerCurrency)
-                    .targetCurrency(equityTargetCurrency)
-                    .daysTillVest(Duration.between(LocalDateTime.now(clock), vestingDate).toDays())
-                    .build();
+            return new StockEquityCalculation(
+                    equityTickerId,
+                    open,
+                    close,
+                    exchangeRate,
+                    equityTickerCurrency,
+                    equityTargetCurrency,
+                    (Duration.between(LocalDateTime.now(clock), vestingDate).toDays())
+            );
+
         }
 
         return null;

@@ -54,10 +54,10 @@ public class DisplayItemService {
     }
 
     private static DisplayItem displayItem(String name, Class type, String location) {
-        return DisplayItemBuilder.builder()
-                .name(name)
-                .type(type.getSimpleName())
-                .location(location)
-                .build();
+        return new DisplayItem(
+                name,
+                type.getSimpleName(),
+                location
+        );
     }
 }

@@ -2,8 +2,6 @@ package co.uk.pbnj.dashin.controller.v1;
 
 import co.uk.pbnj.dashin.dto.DisplayConfigResponse;
 import co.uk.pbnj.dashin.dto.DisplayItem;
-import co.uk.pbnj.dashin.dto.DisplayItemBuilder;
-import co.uk.pbnj.dashin.dto.StockEquityCalculation;
 import co.uk.pbnj.dashin.service.DisplayItemService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
@@ -41,7 +39,7 @@ class DisplayConfigurationControllerIT {
     @Test
     void returnsExpectedDisplayItems() {
         List<DisplayItem> expectedDisplayItems = List.of(
-                DisplayItemBuilder.builder()
+                DisplayItem.builder()
                         .name("item1")
                         .type("type1")
                         .location("/item1/location")

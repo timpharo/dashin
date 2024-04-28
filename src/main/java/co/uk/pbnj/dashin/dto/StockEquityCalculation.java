@@ -1,22 +1,27 @@
 package co.uk.pbnj.dashin.dto;
 
-import io.soabase.recordbuilder.core.RecordBuilder;
 
-@RecordBuilder
-public record StockEquityCalculation(
-        String ticker,
-        double valueOpenDay,
-        double valueCloseDay,
-        double exchangeRate,
-        String originalCurrency,
-        String targetCurrency,
-        long daysTillVest) {
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 
-    public Double targetValueOpenDay(){
+@Data
+@Builder
+@AllArgsConstructor
+public final class StockEquityCalculation {
+    private String ticker;
+    private double valueOpenDay;
+    private double valueCloseDay;
+    private double exchangeRate;
+    private String originalCurrency;
+    private String targetCurrency;
+    private long daysTillVest;
+
+    public Double getTargetValueOpenDay() {
         return valueOpenDay * exchangeRate;
     }
 
-    public Double targetValueCloseDay(){
+    public Double getTargetValueCloseDay() {
         return valueCloseDay * exchangeRate;
     }
 }

@@ -23,10 +23,10 @@ public class TodoRepository {
     private final WebClient webClient;
 
     public TodoRepository(TodoConfig todoConfig) {
-        this.authToken = todoConfig.authToken();
-        this.tasksPath = todoConfig.tasksPath();
-        this.projectsPath = todoConfig.projectsPath();
-        this.webClient = WebClient.create(todoConfig.url());
+        this.authToken = todoConfig.getAuthToken();
+        this.tasksPath = todoConfig.getTasksPath();
+        this.projectsPath = todoConfig.getProjectsPath();
+        this.webClient = WebClient.create(todoConfig.getUrl());
     }
 
     public List<Todo> getTasks(int listId) {

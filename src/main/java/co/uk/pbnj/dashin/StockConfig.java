@@ -1,18 +1,23 @@
 package co.uk.pbnj.dashin;
 
-import io.soabase.recordbuilder.core.RecordBuilder;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 
-@RecordBuilder
-public record StockConfig(
-        String url,
-        String authToken,
-        String prevClosePath,
-        String equityTickerId,
-        String equityTickerCurrency,
-        String equityTargetCurrency,
-        long equityTickerCacheSeconds,
-        int vestingAmount,
-        LocalDateTime vestingDate) {
+@Data
+@Builder
+@AllArgsConstructor
+public final class StockConfig {
+    private String url;
+    private String authToken;
+    private String prevClosePath;
+    private String equityTickerId;
+    private String equityTickerCurrency;
+    private String equityTargetCurrency;
+    private long equityTickerCacheSeconds;
+    private int vestingAmount;
+    private LocalDateTime vestingDate;
 }

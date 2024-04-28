@@ -1,7 +1,14 @@
 package co.uk.pbnj.dashin.dto;
 
-import io.soabase.recordbuilder.core.RecordBuilder;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 
-@RecordBuilder
-public record DisplayItem(String name, String type, String location) {
+@Data
+@Builder
+@AllArgsConstructor
+public final class DisplayItem {
+    private String name;
+    private String type;
+    private String location;
 }

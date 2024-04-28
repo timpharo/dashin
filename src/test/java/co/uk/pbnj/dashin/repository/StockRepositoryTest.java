@@ -1,7 +1,6 @@
 package co.uk.pbnj.dashin.repository;
 
 import co.uk.pbnj.dashin.StockConfig;
-import co.uk.pbnj.dashin.StockConfigBuilder;
 import co.uk.pbnj.dashin.dto.PrevCloseResult;
 import co.uk.pbnj.dashin.dto.PrevCloseStock;
 import okhttp3.HttpUrl;
@@ -33,9 +32,8 @@ class StockRepositoryTest {
     void beforeEach() throws IOException {
         mockBackEnd = new MockWebServer();
         mockBackEnd.start();
-        String baseUrl = "http://localhost:%s".formatted(mockBackEnd.getPort());
-        StockConfig stockConfig = StockConfigBuilder.builder()
-                .url(baseUrl)
+        StockConfig stockConfig = StockConfig.builder()
+                .url(mockBackEnd.url("/").toString())
                 .authToken(AUTH_TOKEN)
                 .prevClosePath(PREV_CLOSE_PATH)
                 .build();

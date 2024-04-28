@@ -20,12 +20,12 @@ class StockEquityCalculationTest {
                 EXCHANGE_RATE, ORIG_CURRENCY, TARGET_CURRENCY, DAYS_TILL_VEST
         );
 
-        assertThat(subject.ticker()).isEqualTo(TICKER);
-        assertThat(subject.targetValueOpenDay()).isEqualTo(OPEN_DAY_VALUE * EXCHANGE_RATE);
-        assertThat(subject.targetValueCloseDay()).isEqualTo(CLOSE_DAY_VALUE * EXCHANGE_RATE);
-        assertThat(subject.exchangeRate()).isEqualTo(EXCHANGE_RATE);
-        assertThat(subject.originalCurrency()).isEqualTo(ORIG_CURRENCY);
-        assertThat(subject.targetCurrency()).isEqualTo(TARGET_CURRENCY);
+        assertThat(subject.getTicker()).isEqualTo(TICKER);
+        assertThat(subject.getTargetValueOpenDay()).isEqualTo(OPEN_DAY_VALUE * EXCHANGE_RATE);
+        assertThat(subject.getTargetValueCloseDay()).isEqualTo(CLOSE_DAY_VALUE * EXCHANGE_RATE);
+        assertThat(subject.getExchangeRate()).isEqualTo(EXCHANGE_RATE);
+        assertThat(subject.getOriginalCurrency()).isEqualTo(ORIG_CURRENCY);
+        assertThat(subject.getTargetCurrency()).isEqualTo(TARGET_CURRENCY);
     }
 
 }

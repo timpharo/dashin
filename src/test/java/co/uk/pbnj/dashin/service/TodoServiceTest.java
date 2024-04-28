@@ -1,7 +1,6 @@
 package co.uk.pbnj.dashin.service;
 
 import co.uk.pbnj.dashin.TodoConfig;
-import co.uk.pbnj.dashin.TodoConfigBuilder;
 import co.uk.pbnj.dashin.dto.Todo;
 import co.uk.pbnj.dashin.dto.TodoListType;
 import co.uk.pbnj.dashin.repository.TodoRepository;
@@ -38,7 +37,7 @@ class TodoServiceTest {
 
     @BeforeEach
     void beforeEach() {
-        TodoConfig todoConfig = TodoConfigBuilder.builder()
+        TodoConfig todoConfig = TodoConfig.builder()
                 .shoppingListId(SHOPPING_LIST_ID)
                 .personalListId(PERSONAL_LIST_ID)
                 .workListId(WORK_LIST_ID)

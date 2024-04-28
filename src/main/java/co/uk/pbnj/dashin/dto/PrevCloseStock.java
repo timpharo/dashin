@@ -1,10 +1,14 @@
 package co.uk.pbnj.dashin.dto;
 
-import io.soabase.recordbuilder.core.RecordBuilder;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 
 import java.util.List;
 
-@RecordBuilder
-public record PrevCloseStock(List<PrevCloseResult> results){
-
+@Data
+@Builder
+@AllArgsConstructor
+public class PrevCloseStock {
+    private List<PrevCloseResult> results;
 }

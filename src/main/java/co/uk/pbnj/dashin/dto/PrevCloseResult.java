@@ -1,8 +1,13 @@
 package co.uk.pbnj.dashin.dto;
 
-import io.soabase.recordbuilder.core.RecordBuilder;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 
-@RecordBuilder
-public record PrevCloseResult(Double open, Double close){
-   
+@Data
+@Builder
+@AllArgsConstructor
+public class PrevCloseResult {
+    private Double open;
+    private Double close;
 }

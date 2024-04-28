@@ -1,16 +1,20 @@
 package co.uk.pbnj.dashin;
 
-import io.soabase.recordbuilder.core.RecordBuilder;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 
-@RecordBuilder
-public record TodoConfig(
-        String url,
-        String authToken,
-        int shoppingListId,
-        int personalListId,
-        int workListId,
-        int learnListId,
-        int inboxListId,
-        String tasksPath,
-        String projectsPath) {
+@Data
+@Builder
+@AllArgsConstructor
+public class TodoConfig {
+        private String url;
+        private String authToken;
+        private int shoppingListId;
+        private int personalListId;
+        private int workListId;
+        private int learnListId;
+        private int inboxListId;
+        private String tasksPath;
+        private String projectsPath;
 }

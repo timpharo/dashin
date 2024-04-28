@@ -20,11 +20,11 @@ public class TodoService {
 
     public TodoService(TodoRepository repository, TodoConfig todoConfig) {
         this.repository = repository;
-        this.shoppingProjectId = todoConfig.shoppingListId();
-        this.personalProjectId = todoConfig.personalListId();
-        this.workProjectId = todoConfig.workListId();
-        this.learnProjectId = todoConfig.learnListId();
-        this.inboxProjectId = todoConfig.inboxListId();
+        this.shoppingProjectId = todoConfig.getShoppingListId();
+        this.personalProjectId = todoConfig.getPersonalListId();
+        this.workProjectId = todoConfig.getWorkListId();
+        this.learnProjectId = todoConfig.getLearnListId();
+        this.inboxProjectId = todoConfig.getInboxListId();
     }
 
     public List<Todo> getList(TodoListType type) {

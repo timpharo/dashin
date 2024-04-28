@@ -1,10 +1,14 @@
 package co.uk.pbnj.dashin.dto;
 
-import io.soabase.recordbuilder.core.RecordBuilder;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 
 import java.util.Map;
 
-@RecordBuilder
-public record CurrencyLatest(Map<String, Double> currencyExchanges) {
-
+@Data
+@Builder
+@AllArgsConstructor
+public class CurrencyLatest {
+    private Map<String, Double> currencyExchanges;
 }

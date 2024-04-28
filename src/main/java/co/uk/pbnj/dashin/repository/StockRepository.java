@@ -16,9 +16,9 @@ public class StockRepository {
     private final WebClient webClient;
 
     public StockRepository(StockConfig stockConfig) {
-        this.authToken = stockConfig.authToken();
-        this.prevClosePath = stockConfig.prevClosePath();
-        this.webClient = WebClient.create(stockConfig.url());
+        this.authToken = stockConfig.getAuthToken();
+        this.prevClosePath = stockConfig.getPrevClosePath();
+        this.webClient = WebClient.create(stockConfig.getUrl());
     }
 
     public Optional<PrevCloseStock> getPreviousClose(String tickerId) {

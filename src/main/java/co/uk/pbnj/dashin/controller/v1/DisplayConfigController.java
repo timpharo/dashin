@@ -1,7 +1,6 @@
 package co.uk.pbnj.dashin.controller.v1;
 
 import co.uk.pbnj.dashin.dto.DisplayConfigResponse;
-import co.uk.pbnj.dashin.dto.DisplayConfigResponseBuilder;
 import co.uk.pbnj.dashin.dto.DisplayItem;
 import co.uk.pbnj.dashin.service.DisplayItemService;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,9 +21,8 @@ public class DisplayConfigController {
 
     @GetMapping("/v1/display-config")
     public DisplayConfigResponse displayConfig() {
-        List<DisplayItem> displayItems = displayItemService.getDisplayItems();
-        return DisplayConfigResponseBuilder.builder()
-                .displayItems(displayItems)
-                .build();
+        return new DisplayConfigResponse(
+                displayItemService.getDisplayItems()
+        );
     }
 }

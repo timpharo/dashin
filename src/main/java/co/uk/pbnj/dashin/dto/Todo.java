@@ -1,8 +1,14 @@
 package co.uk.pbnj.dashin.dto;
 
-import io.soabase.recordbuilder.core.RecordBuilder;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 
-@RecordBuilder
-public record Todo(int order, String content, String description) {
-
+@Data
+@Builder
+@AllArgsConstructor
+public final class Todo {
+    private int order;
+    private String content;
+    private String description;
 }
