@@ -32,6 +32,15 @@ todo:
         days: Monday-Sunday
         times: 00:00 - 23:59
 
+countdown:
+    countdownConfig:
+      performanceRating:
+        description: Work performance rating announced
+        date: 2024-10-28
+      bonusPaid:
+        description: Work bonus time !!!
+        date: 2025-02-28
+
 stock:
   url: https://api.polygon.io/v2
   authToken: HHhqdT6OjkDOm_Q3_nmimw4b2iFA38yK
