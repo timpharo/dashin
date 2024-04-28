@@ -18,18 +18,18 @@ todo:
   displayConfig:
       shopping:
         days: Monday-Sunday
-        times: 00:00 - 23:59
+        times: 16:00 - 23:59
       personal:
-        days: Sunday
+        days: Monday-Sunday
         times: 00:00 - 23:59
       work:
-        days: Sunday
-        times: 00:00 - 23:59
+        days: Monday-Friday
+        times: 08:00 - 16:00
       learn:
-        days: Sunday
+        days: Monday-Sunday
         times: 00:00 - 23:59
       inbox:
-        days: Sunday
+        days: Monday-Sunday
         times: 00:00 - 23:59
 
 stock:

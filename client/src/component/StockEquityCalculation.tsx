@@ -3,8 +3,8 @@ import {StockEquityCalculationConfig} from "../types/StockEquityCalculationConfi
 
 const StockEquityCalculation: Component = (stock: StockEquityCalculationConfig) => {
   return (
-    <div className="m-2">
-        <div className="card w-1/4 bg-neutral text-neutral-content card-compact">
+    <div className="m-2 float-start">
+        <div className="card bg-neutral text-neutral-content card-compact">
 
             <div className="card-body">
                 <h2 className="card-title">💰 Stock equity calculation</h2>

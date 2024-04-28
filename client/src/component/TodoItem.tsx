@@ -4,8 +4,8 @@ import {For} from "solid-js";
 
 const TodoItem: Component = (name: String, todo: TodoItemConfig[]) => {
   return (
-      <div className="m-2">
-        <div className="card w-1/4 bg-neutral text-neutral-content card-compact">
+      <div className="m-2 float-start">
+        <div className="card bg-neutral text-neutral-content card-compact">
             <div className="card-body">
                 <h2 className="card-title">
                     📋 { name.charAt(0).toUpperCase() + name.slice(1).toLowerCase() } todo list
@@ -20,9 +20,9 @@ const TodoItem: Component = (name: String, todo: TodoItemConfig[]) => {
                                 <label className="cursor-pointer label">
                                     <span className="label-text">
                                         { item.content }
-                                        { item.description }
+                                        {/*{ item.description } */}
                                     </span>
-                                    <input type="checkbox" className="checkbox" disabled />
+                                    <input type="checkbox" className="ml-1 checkbox" disabled />
                                 </label>
                             </div>
                         }</For>
