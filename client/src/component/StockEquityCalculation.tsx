@@ -3,20 +3,49 @@ import {StockEquityCalculationConfig} from "../types/StockEquityCalculationConfi
 
 const StockEquityCalculation: Component = (stock: StockEquityCalculationConfig) => {
   return (
-    <div>
-      <h2>Stock equity calculation</h2>
-      <p>Days till vest { stock.daysTillVest }</p>
-      <p>Vesting share value yesterday:</p>
-      <ul>
-          <li>
-              opened @ { formatNumber(stock.valueOpenDay * stock.exchangeRate, stock.targetCurrency) }
-              ({ formatNumber(stock.valueOpenDay, stock.originalCurrency) })
-          </li>
-          <li>
-              closed @ { formatNumber(stock.valueCloseDay * stock.exchangeRate, stock.targetCurrency) }
-              ({ formatNumber(stock.valueCloseDay, stock.originalCurrency) })
-          </li>
-      </ul>
+    <div className="m-2">
+        <div className="card w-1/4 bg-neutral text-neutral-content card-compact">
+
+            <div className="card-body">
+                <h2 className="card-title">💰 Stock equity calculation</h2>
+
+                <p className="text-xs">Equity value if vesting today</p>
+
+                <div className="stats stats-vertical shadow">
+                    <div className="stat bg-success text-success-content">
+                        <div className="stat-title text-success-content">Yesterdays close</div>
+                        <div className="stat-value">
+                            { formatNumber(stock.valueCloseDay * stock.exchangeRate, stock.targetCurrency) }
+                        </div>
+                        <div className="stat-desc text-success-content">
+                            { formatNumber(stock.valueCloseDay, stock.originalCurrency)}
+                        </div>
+                    </div>
+
+                    <div className="stat">
+                        <div className="stat-title">Yesterdays open</div>
+                        <div className="stat-value">
+                            { formatNumber(stock.valueOpenDay * stock.exchangeRate, stock.targetCurrency) }
+                        </div>
+                        <div className="stat-desc">
+                            { formatNumber(stock.valueOpenDay, stock.originalCurrency)}
+                        </div>
+                    </div>
+                </div>
+
+                <div className="overflow-x-auto">
+                    <table className="table">
+                        <tbody>
+                        <tr>
+                            <th>Days till vest</th>
+                            <td>{ stock.daysTillVest }</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
     </div>
   );
 };

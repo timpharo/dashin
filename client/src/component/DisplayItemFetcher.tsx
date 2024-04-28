@@ -1,12 +1,12 @@
 import type { Component } from 'solid-js';
 
-import styles from '../App.module.css';
-import {createResource, Show} from "solid-js";
+import {createResource} from "solid-js";
 import {DisplayItem} from "../types/DisplayConfig";
 import TodoItem from "../component/TodoItem";
 import StockEquityCalculation from "./StockEquityCalculation";
 import {TodoItemConfig} from "../types/TodoItemConfig";
 import {StockEquityCalculationConfig} from "../types/StockEquityCalculationConfig";
+import Loading from "./Loading";
 
 
 const DisplayItemConfigFetcher: Component = (displayItem: DisplayItem) => {
@@ -16,12 +16,14 @@ const DisplayItemConfigFetcher: Component = (displayItem: DisplayItem) => {
   const [displayItemConfig, { _, refetchDisplayItemConfig }] = createResource(fetchDisplayItemConfig);
 
   return (
-    <div className={styles.App}>
+      <div>
         <Switch>
+            <Match when={!displayItemConfig()}>
+                { Loading() }
+            </Match>
             <Match when={displayItemConfig() && displayItem.type === 'Todo'}>
                 { TodoItem(displayItem.name, displayItemConfig() as TodoItemConfig[]) }
             </Match>
-
             <Match when={displayItemConfig() && displayItem.type === 'StockEquityCalculation'}>
                 { StockEquityCalculation( displayItemConfig() as StockEquityCalculationConfig) }
             </Match>
