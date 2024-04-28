@@ -7,6 +7,8 @@ import StockEquityCalculation from "./StockEquityCalculation";
 import {TodoItemConfig} from "../types/TodoItemConfig";
 import {StockEquityCalculationConfig} from "../types/StockEquityCalculationConfig";
 import Loading from "./Loading";
+import CountdownItem from "./CountdownItem";
+import {Countdown} from "../types/Countdown";
 
 
 const DisplayItemConfigFetcher: Component = (displayItem: DisplayItem) => {
@@ -14,20 +16,26 @@ const DisplayItemConfigFetcher: Component = (displayItem: DisplayItem) => {
       await fetch(`http://localhost:8080${displayItem.location}`)).json();
 
   const [displayItemConfig, { _, refetchDisplayItemConfig }] = createResource(fetchDisplayItemConfig);
+    const type = displayItem.type;
 
-  return (
+    return (
       <div>
-        <Switch>
-            <Match when={!displayItemConfig()}>
-                { Loading() }
-            </Match>
-            <Match when={displayItemConfig() && displayItem.type === 'Todo'}>
-                { TodoItem(displayItem.name, displayItemConfig() as TodoItemConfig[]) }
-            </Match>
-            <Match when={displayItemConfig() && displayItem.type === 'StockEquityCalculation'}>
-                { StockEquityCalculation( displayItemConfig() as StockEquityCalculationConfig) }
-            </Match>
-        </Switch>
+          <Show
+              when={displayItemConfig()}
+              fallback={<Loading />}>
+                <Switch>
+                    <Match when={type === 'Todo'}>
+                        { TodoItem(displayItem.name, displayItemConfig() as TodoItemConfig[]) }
+                    </Match>
+                    <Match when={type === 'StockEquityCalculation'}>
+                        { StockEquityCalculation( displayItemConfig() as StockEquityCalculationConfig) }
+                    </Match>
+                    <Match when={type === 'Countdown'}>
+                        { CountdownItem( displayItemConfig() as Countdown) }
+                    </Match>
+
+                </Switch>
+          </Show>
     </div>
   );
 };

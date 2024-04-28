@@ -1,5 +1,6 @@
 package co.uk.pbnj.dashin.controller.v1;
 
+import co.uk.pbnj.dashin.ActivateIntegrationProfile;
 import co.uk.pbnj.dashin.dto.StockEquityCalculation;
 import co.uk.pbnj.dashin.service.StockService;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,13 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 import static org.mockito.BDDMockito.given;
+import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ActiveProfiles("integration")
+@SpringBootTest(webEnvironment = RANDOM_PORT)
+@ActivateIntegrationProfile
 class StockControllerIT {
 
     @MockBean

@@ -36,10 +36,10 @@ countdown:
     countdownConfig:
       performanceRating:
         description: Work performance rating announced
-        date: 2024-10-28
+        date: 2024-10-28T00:00:00
       bonusPaid:
         description: Work bonus time !!!
-        date: 2025-02-28
+        date: 2025-02-28T00:00:00
 
 stock:
   url: https://api.polygon.io/v2

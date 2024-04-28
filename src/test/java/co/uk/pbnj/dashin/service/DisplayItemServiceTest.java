@@ -16,6 +16,7 @@ import java.time.Clock;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import static co.uk.pbnj.dashin.dto.TodoListType.*;
@@ -44,15 +45,20 @@ class DisplayItemServiceTest {
     private static final int SATURDAY_DAY_OF_MONTH = 7;
     private static final String TODO_TYPE = "Todo";
     private static final String STOCK_TYPE = "StockEquityCalculation";
+    private static final String COUNTDOWN_TYPE = "Countdown";
 
     @Mock
     private TodoDisplayConfig todoDisplayConfig;
+
+    @Mock
+    private CountdownService countdownService;
 
     @Test
     void displaysAllItemsWhenNoDisplayConfig(){
         Clock clockSunday = Clock.fixed(LocalDateTime.of(2023, 1, 1, 0, 0).toInstant(ZoneOffset.UTC), ZoneOffset.UTC);
         given(todoDisplayConfig.getDisplayConfig(any())).willReturn(null);
-        DisplayItemService subject = new DisplayItemService(clockSunday, todoDisplayConfig);
+        given(countdownService.getCountdownItems()).willReturn(Set.of("COUNTDOWN_1"));
+        DisplayItemService subject = new DisplayItemService(clockSunday, todoDisplayConfig, countdownService);
 
         List<DisplayItem> results = subject.getDisplayItems();
 
@@ -62,7 +68,8 @@ class DisplayItemServiceTest {
                 displayItem("WORK", TODO_TYPE, todoList(WORK)),
                 displayItem("LEARN", TODO_TYPE, todoList(LEARN)),
                 displayItem("INBOX", TODO_TYPE, todoList(INBOX)),
-                displayItem("STOCK EQUITY", STOCK_TYPE, "/v1/stock-equity")
+                displayItem("STOCK EQUITY", STOCK_TYPE, "/v1/stock-equity"),
+                displayItem("COUNTDOWN_1", COUNTDOWN_TYPE, countdown("COUNTDOWN_1"))
         );
     }
 
@@ -71,7 +78,8 @@ class DisplayItemServiceTest {
     void displaysAllItemsWhenAllItemsConfiguredToDisplay(int dayOfMonth, String days, String hours){
         Clock clockSunday = Clock.fixed(LocalDateTime.of(2023, 1, dayOfMonth, 0, 0).toInstant(ZoneOffset.UTC), ZoneOffset.UTC);
         given(todoDisplayConfig.getDisplayConfig(any())).willReturn(new DisplayConfig(days, hours));
-        DisplayItemService subject = new DisplayItemService(clockSunday, todoDisplayConfig);
+        given(countdownService.getCountdownItems()).willReturn(Set.of("COUNTDOWN_1"));
+        DisplayItemService subject = new DisplayItemService(clockSunday, todoDisplayConfig, countdownService);
 
         List<DisplayItem> results = subject.getDisplayItems();
 
@@ -81,7 +89,8 @@ class DisplayItemServiceTest {
                 displayItem("WORK", TODO_TYPE, todoList(WORK)),
                 displayItem("LEARN", TODO_TYPE, todoList(LEARN)),
                 displayItem("INBOX", TODO_TYPE, todoList(INBOX)),
-                displayItem("STOCK EQUITY", STOCK_TYPE, "/v1/stock-equity")
+                displayItem("STOCK EQUITY", STOCK_TYPE, "/v1/stock-equity"),
+                displayItem("COUNTDOWN_1", COUNTDOWN_TYPE, countdown("COUNTDOWN_1"))
         );
     }
 
@@ -115,6 +124,10 @@ class DisplayItemServiceTest {
 
     private static String todoList(TodoListType type) {
         return format("/v1/todo/%s", type.name());
+    }
+
+    private static String countdown(String name) {
+        return format("/v1/countdown/%s", name);
     }
 
 }
