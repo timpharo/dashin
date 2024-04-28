@@ -62,6 +62,7 @@ public class StockService {
             double exchangeRate = latestExchangeRate.map(it -> it.currencyExchanges().get(equityTargetCurrency)).orElse(DEFAULT_EXCHANGE_RATE);
 
             return StockEquityCalculationBuilder.builder()
+                    .ticker(equityTickerId)
                     .valueOpenDay(open)
                     .valueCloseDay(close)
                     .exchangeRate(exchangeRate)

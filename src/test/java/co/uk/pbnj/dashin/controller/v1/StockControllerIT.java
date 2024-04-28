@@ -34,6 +34,7 @@ class StockControllerIT {
     @Test
     void getStockEquityCalculation() {
         StockEquityCalculation calculation = StockEquityCalculationBuilder.builder()
+                .ticker("ticker")
                 .valueOpenDay(1.1)
                 .valueCloseDay(2.2)
                 .exchangeRate(3.3)

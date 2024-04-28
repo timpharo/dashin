@@ -1,4 +1,5 @@
 export interface StockEquityCalculationConfig {
+    ticker: String
     valueOpenDay: number
     valueCloseDay: number
     exchangeRate: number

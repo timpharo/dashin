@@ -81,6 +81,7 @@ class StockServiceTest {
 
         StockEquityCalculation stockEquityCalculation = subject.getStockEquityCalculation();
 
+        assertThat(stockEquityCalculation.ticker()).isEqualTo(EQUITY_TICKER_ID);
         assertThat(stockEquityCalculation.valueOpenDay()).isEqualTo(OPEN_AMOUNT * VESTING_AMOUNT);
         assertThat(stockEquityCalculation.valueCloseDay()).isEqualTo(CLOSE_AMOUNT * VESTING_AMOUNT);
         assertThat(stockEquityCalculation.exchangeRate()).isEqualTo(TARGET_CURRENCY_EXCHANGE_RATE);
@@ -136,6 +137,7 @@ class StockServiceTest {
 
         StockEquityCalculation stockEquityCalculation = subject.getStockEquityCalculation();
 
+        assertThat(stockEquityCalculation.ticker()).isEqualTo(EQUITY_TICKER_ID);
         assertThat(stockEquityCalculation.valueOpenDay()).isEqualTo(OPEN_AMOUNT * VESTING_AMOUNT);
         assertThat(stockEquityCalculation.valueCloseDay()).isEqualTo(CLOSE_AMOUNT * VESTING_AMOUNT);
         assertThat(stockEquityCalculation.exchangeRate()).isEqualTo(DEFAULT_EXCHANGE_RATE);

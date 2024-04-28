@@ -37,6 +37,10 @@ const StockEquityCalculation: Component = (stock: StockEquityCalculationConfig) 
                     <table className="table">
                         <tbody>
                         <tr>
+                            <th>Ticker</th>
+                            <td>{ stock.ticker }</td>
+                        </tr>
+                        <tr>
                             <th>Days till vest</th>
                             <td>{ stock.daysTillVest }</td>
                         </tr>
