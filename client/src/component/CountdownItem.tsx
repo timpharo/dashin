@@ -18,6 +18,12 @@ const CountdownItem: Component = (countdown: Countdown) => {
                         <span>{ countdown.hoursUntil }h </span>
                         <span>{ countdown.minutesUntil }m </span>
                     </div>
+                    <Switch>
+                        <Match when={countdown.daysUntil <= 365}>
+                            <progress className="progress progress-success w-56" value={365 - countdown.daysUntil} max="365"></progress>
+                        </Match>
+                    </Switch>
+
                 </div>
             </div>
         </div>

@@ -46,6 +46,8 @@ const StockEquityCalculation: Component = (stock: StockEquityCalculationConfig) 
                         </tr>
                         </tbody>
                     </table>
+
+                    <progress className="progress progress-success w-56" value={365 - stock.daysTillVest} max="365"></progress>
                 </div>
 
             </div>
