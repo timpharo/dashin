@@ -23,7 +23,7 @@ todo:
         days: Monday-Sunday
         times: 00:00 - 23:59
       work:
-        days: Monday-Friday
+        days: Monday-Sunday
         times: 08:00 - 16:00
       learn:
         days: Monday-Sunday

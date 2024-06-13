@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 import java.time.Clock;
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.Optional;
-import java.util.Set;
+import java.time.ZoneOffset;
+import java.util.*;
+
+import static java.util.Comparator.comparingLong;
 
 @Service
 public class CountdownService {
@@ -28,8 +30,13 @@ public class CountdownService {
                 .map(item -> getCountdownRepresentation(now, name, item));
     }
 
-    public Set<String> getCountdownItems() {
-        return countdownConfig.getCountdownConfig().keySet();
+    public List<String> getCountdownItems() {
+        return countdownConfig.getCountdownConfig()
+                .entrySet()
+                .stream()
+                .sorted(comparingLong(e -> e.getValue().getDate().toEpochSecond(ZoneOffset.UTC)))
+                .map(Map.Entry::getKey)
+                .toList();
     }
 
     private static Countdown getCountdownRepresentation(LocalDateTime now, String name, CountdownConfig item) {

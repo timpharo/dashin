@@ -1,15 +1,15 @@
 package co.uk.pbnj.dashin.service;
 
 import co.uk.pbnj.dashin.config.CountdownAppConfig;
-import co.uk.pbnj.dashin.dto.CountdownConfig;
 import co.uk.pbnj.dashin.dto.Countdown;
+import co.uk.pbnj.dashin.dto.CountdownConfig;
 import org.junit.jupiter.api.Test;
 
 import java.time.Clock;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 
 import static java.time.ZoneOffset.UTC;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -17,6 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class CountdownServiceTest {
     private static final String ITEM_1_KEY = "item1";
     private static final String ITEM_2_KEY = "item2";
+    private static final String ITEM_3_KEY = "item3";
     private static final LocalDateTime BASE_DATE_TIME = LocalDateTime.of(2024, 1, 1, 1, 1, 1);
     private static final Clock CLOCK = Clock.fixed(BASE_DATE_TIME.toInstant(UTC), UTC);
 
@@ -84,24 +85,31 @@ class CountdownServiceTest {
     }
 
     @Test
-    void returnCorrectListOfItems() {
+    void returnCorrectListOfItemsByItemChronologyAscending() {
         CountdownConfig item1 = CountdownConfig.builder()
                 .description("Item 1")
-                .date(BASE_DATE_TIME.plusDays(1).plusHours(2).plusMinutes(3).plusSeconds(4))
+                .date(BASE_DATE_TIME.plusDays(2).plusHours(2).plusMinutes(2).plusSeconds(2))
                 .build();
         CountdownConfig item2 = CountdownConfig.builder()
                 .description("Item 2")
-                .date(BASE_DATE_TIME.plusDays(5).plusHours(6).plusMinutes(7).plusSeconds(8))
+                .date(BASE_DATE_TIME.plusDays(2).plusHours(2).plusMinutes(2).plusSeconds(3))
+                .build();
+        CountdownConfig item3 = CountdownConfig.builder()
+                .description("Item 3")
+                .date(BASE_DATE_TIME.plusDays(1).plusHours(1).plusMinutes(1).plusSeconds(1))
                 .build();
         CountdownAppConfig config = CountdownAppConfig.builder()
-                .countdownConfig(Map.of(ITEM_1_KEY, item1, ITEM_2_KEY, item2))
-                .build();
+                .countdownConfig(Map.of(
+                        ITEM_1_KEY, item1,
+                        ITEM_2_KEY, item2,
+                        ITEM_3_KEY, item3
+                )).build();
 
         CountdownService subject = new CountdownService(CLOCK, config);
 
-        Set<String> results = subject.getCountdownItems();
+        List<String> results = subject.getCountdownItems();
 
-        assertThat(results).containsExactlyInAnyOrder(ITEM_1_KEY, ITEM_2_KEY);
+        assertThat(results).containsExactly(ITEM_3_KEY, ITEM_1_KEY, ITEM_2_KEY);
     }
 
 }
