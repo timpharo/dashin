@@ -5,6 +5,7 @@ import {createResource, For} from "solid-js";
 import {DisplayConfig} from "./types/DisplayConfig";
 import DisplayItemConfigFetcher from "./component/DisplayItemFetcher";
 import Loading from "./component/Loading";
+import TVSportGuide from "./component/TVSportGuide";
 
 const fetchDisplayConfig = async() =>
     (await fetch('http://localhost:8080/v1/display-config')).json();
@@ -33,6 +34,7 @@ const App: Component = () => {
                       </div>
                   }</For>
               </Show>
+              <TVSportGuide />
           </div>
       </div>
   );

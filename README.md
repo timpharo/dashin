@@ -15,3 +15,4 @@ rules to allow the most important things to be displayed
 * [Tasks API](https://developer.todoist.com/rest/v2/)
 * [Stock API](https://polygon.io/docs/stocks/)
 * [Currency conversion API](https://app.freecurrencyapi.com/dashboard)
+* [TV Sport Guide Widget](https://www.tvsportguide.com/page/widget/)
