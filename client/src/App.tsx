@@ -1,6 +1,5 @@
 import type { Component } from 'solid-js';
 
-import styles from './App.module.css';
 import {createResource, For} from "solid-js";
 import {DisplayConfig} from "./types/DisplayConfig";
 import DisplayItemConfigFetcher from "./component/DisplayItemFetcher";

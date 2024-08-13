@@ -14,6 +14,7 @@ public final class StockConfig {
     private String url;
     private String authToken;
     private String prevClosePath;
+    private String dailyOpenClosePath;
     private String equityTickerId;
     private String equityTickerCurrency;
     private String equityTargetCurrency;

@@ -9,7 +9,7 @@ public record PrevCloseStockResponse(List<PrevCloseResultResponse> results){
     public PrevCloseStock toPrevCloseStock() {
         return new PrevCloseStock(
                 results.stream()
-                        .map(PrevCloseResultResponse::toPrevCloseResult).toList()
+                        .map(PrevCloseResultResponse::toDailyOpenCloseResult).toList()
         );
     }
 }

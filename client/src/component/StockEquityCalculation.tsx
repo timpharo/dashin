@@ -1,8 +1,10 @@
-import type { Component } from 'solid-js';
+import {Component, For, Match, Switch} from 'solid-js';
 import {StockEquityCalculationConfig} from "../types/StockEquityCalculationConfig";
 
 const StockEquityCalculation: Component = (stock: StockEquityCalculationConfig) => {
-  return (
+    let targetValueCloseDayYesterday = stock.targetValueCloseDay;
+    let targetValueOpenDayYesterday = stock.targetValueOpenDay;
+    return (
     <div className="m-2 float-start">
         <div className="card bg-neutral text-neutral-content card-compact">
 
@@ -15,7 +17,7 @@ const StockEquityCalculation: Component = (stock: StockEquityCalculationConfig) 
                     <div className="stat bg-success text-success-content">
                         <div className="stat-title text-success-content">Yesterdays close</div>
                         <div className="stat-value">
-                            { formatNumber(stock.valueCloseDay * stock.exchangeRate, stock.targetCurrency) }
+                            { formatNumber(targetValueCloseDayYesterday, stock.targetCurrency) }
                         </div>
                         <div className="stat-desc text-success-content">
                             { formatNumber(stock.valueCloseDay, stock.originalCurrency)}
@@ -25,7 +27,7 @@ const StockEquityCalculation: Component = (stock: StockEquityCalculationConfig) 
                     <div className="stat">
                         <div className="stat-title">Yesterdays open</div>
                         <div className="stat-value">
-                            { formatNumber(stock.valueOpenDay * stock.exchangeRate, stock.targetCurrency) }
+                            { formatNumber(targetValueOpenDayYesterday, stock.targetCurrency) }
                         </div>
                         <div className="stat-desc">
                             { formatNumber(stock.valueOpenDay, stock.originalCurrency)}
@@ -38,16 +40,52 @@ const StockEquityCalculation: Component = (stock: StockEquityCalculationConfig) 
                         <tbody>
                         <tr>
                             <th>Ticker</th>
-                            <td>{ stock.ticker }</td>
+                            <td>{stock.ticker}</td>
                         </tr>
                         <tr>
                             <th>Days till vest</th>
-                            <td>{ stock.daysTillVest }</td>
+                            <td>{stock.daysTillVest}</td>
+                        </tr>
+                        <tr>
+                            <td colSpan={2}>
+                                <progress className="progress progress-success w-56" value={365 - stock.daysTillVest}
+                                          max="365"></progress>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
 
-                    <progress className="progress progress-success w-56" value={365 - stock.daysTillVest} max="365"></progress>
+                    <div className="overflow-x-auto">
+                        <table className="table table-xs">
+                            <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Open</th>
+                                <th>Close</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <Switch>
+                                <Match when={stock.history.length == 0}>
+                                    <tr>
+                                        <td colSpan="2">No historic data</td>
+                                    </tr>
+                                </Match>
+                                <Match when={stock.history.length > 0}>
+                                    <For each={stock.history}>{(historicItem) =>
+                                        <tr>
+                                            <th>{historicItem.date}</th>
+                                            <td>{formatNumber(historicItem.targetValueOpenDay, stock.targetCurrency)}</td>
+                                            <td>{formatNumber(historicItem.targetValueCloseDay, stock.targetCurrency)}</td>
+                                        </tr>
+                                    }</For>
+                                </Match>
+                            </Switch>
+                            </tbody>
+                        </table>
+                    </div>
+
+
                 </div>
 
             </div>

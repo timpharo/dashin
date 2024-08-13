@@ -19,6 +19,9 @@ public class StockAppConfig {
     @Value("${stock.paths.prevClose}")
     private String prevClosePath;
 
+    @Value("${stock.paths.dailyOpenClose}")
+    private String dailyOpenClosePath;
+
     @Value("${stock.equity.tickerId}")
     private String equityTickerId;
 
@@ -43,6 +46,7 @@ public class StockAppConfig {
                 url,
                 authToken,
                 prevClosePath,
+                dailyOpenClosePath,
                 equityTickerId,
                 equityTickerCurrency,
                 equityTargetCurrency,

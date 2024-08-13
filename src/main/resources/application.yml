@@ -34,21 +34,25 @@ todo:
 
 countdown:
     countdownConfig:
-      holidayTenerife:
-        description: Holiday Tenerife
-        date: 2024-07-24T00:00:00
+      jaxConference:
+        description: JAX London 2024
+        date: 2024-09-30T00:00:00
       performanceRating:
         description: Work performance rating announced
         date: 2024-10-28T00:00:00
+      amsterdam40thTrip:
+        description: Trip Amsterdam (Birthday)
+        date: 2025-02-17T00:00:00
       bonusPaid:
-        description: Work bonus time !!!
+        description: Work bonus time
         date: 2025-02-28T00:00:00
 
 stock:
-  url: https://api.polygon.io/v2
+  url: https://api.polygon.io
   authToken: HHhqdT6OjkDOm_Q3_nmimw4b2iFA38yK
   paths:
-    prevClose: /aggs/ticker/%s/prev
+    prevClose: /v2/aggs/ticker/%s/prev
+    dailyOpenClose: /v1/open-close/%s/%s
   equity:
     tickerId: BKNG
     tickerCurrency: USD
@@ -89,6 +93,7 @@ stock:
   authToken: int-auth-token
   paths:
     prevClose: /prev-close
+    dailyOpenClose: /prev-open
   equity:
     tickerId: FAKE
     tickerCurrency: USD

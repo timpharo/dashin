@@ -7,7 +7,9 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-public class PrevCloseResult {
+public class DailyOpenCloseResult {
     private Double open;
     private Double close;
+    private Double high;
+    private Double low;
 }

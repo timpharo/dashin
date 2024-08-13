@@ -10,5 +10,5 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 public class PrevCloseStock {
-    private List<PrevCloseResult> results;
+    private List<DailyOpenCloseResult> results;
 }
