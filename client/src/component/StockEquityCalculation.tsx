@@ -17,20 +17,23 @@ const StockEquityCalculation: Component = (stock: StockEquityCalculationConfig) 
                     <div className="stat bg-success text-success-content">
                         <div className="stat-title text-success-content">Yesterdays close</div>
                         <div className="stat-value">
-                            { formatNumber(targetValueCloseDayYesterday, stock.targetCurrency) }
+                            {formatNumber(targetValueCloseDayYesterday, stock.targetCurrency)}
                         </div>
                         <div className="stat-desc text-success-content">
-                            { formatNumber(stock.valueCloseDay, stock.originalCurrency)}
+                            {formatNumber(stock.valueCloseDay, stock.originalCurrency)}
+                        </div>
+                        <div className="stat-desc text-success-content">
+                            (After tax: {formatNumber((targetValueCloseDayYesterday * 0.6), stock.targetCurrency)})
                         </div>
                     </div>
 
                     <div className="stat">
                         <div className="stat-title">Yesterdays open</div>
                         <div className="stat-value">
-                            { formatNumber(targetValueOpenDayYesterday, stock.targetCurrency) }
+                            {formatNumber(targetValueOpenDayYesterday, stock.targetCurrency)}
                         </div>
                         <div className="stat-desc">
-                            { formatNumber(stock.valueOpenDay, stock.originalCurrency)}
+                            {formatNumber(stock.valueOpenDay, stock.originalCurrency)}
                         </div>
                     </div>
                 </div>
@@ -83,6 +86,14 @@ const StockEquityCalculation: Component = (stock: StockEquityCalculationConfig) 
                             </Switch>
                             </tbody>
                         </table>
+                        {/*TODO this is brittle as hardcodes the stock market*/}
+                        <div className="overflow-x-auto">
+                            <a
+                                href={"https://www.google.com/finance/quote/" + stock.ticker + ":NASDAQ?window=5Y"}
+                                target="_blank">
+                                View stock history
+                            </a>
+                        </div>
                     </div>
 
 
