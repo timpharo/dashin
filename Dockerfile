@@ -1,5 +1,5 @@
 # Build frontend
-FROM node:20-alpine as frontend
+FROM node:20-alpine AS frontend
 WORKDIR /usr/local/app
 
 COPY ./client .
@@ -10,7 +10,7 @@ RUN npm install
 RUN npm run build
 
 # Build backend
-FROM azul/zulu-openjdk-alpine:19-latest as backend
+FROM azul/zulu-openjdk-alpine:19-latest AS backend
 WORKDIR /usr/local/app
 
 COPY ./gradle/wrapper ./gradle/wrapper

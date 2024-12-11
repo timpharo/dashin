@@ -23,7 +23,7 @@ const StockEquityCalculation: Component = (stock: StockEquityCalculationConfig) 
                             {formatNumber(stock.valueCloseDay, stock.originalCurrency)}
                         </div>
                         <div className="stat-desc text-success-content">
-                            (After tax: {formatNumber((targetValueCloseDayYesterday * 0.6), stock.targetCurrency)})
+                            (After tax: {formatNumber((targetValueCloseDayYesterday * 0.58), stock.targetCurrency)})
                         </div>
                     </div>
 

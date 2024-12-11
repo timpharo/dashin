@@ -34,12 +34,9 @@ todo:
 
 countdown:
     countdownConfig:
-      jaxConference:
-        description: JAX London 2024
-        date: 2024-09-30T00:00:00
-      performanceRating:
-        description: Work performance rating announced
-        date: 2024-10-28T00:00:00
+      finishChristmas:
+        description: Finish for Christmas
+        date: 2024-12-19T16:00:00
       amsterdam40thTrip:
         description: Trip Amsterdam (Birthday)
         date: 2025-02-17T00:00:00
@@ -59,7 +56,7 @@ stock:
     targetCurrency: GBP
     vestingAmount: 10
     vestingDate: 2025-03-04T00:00:00
-    cacheSeconds: 28800 # 8 hours
+    cacheSeconds: 14400 # 4 hours
 
 currency:
   url: https://api.freecurrencyapi.com/v1
