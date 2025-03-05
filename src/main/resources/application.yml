@@ -34,15 +34,18 @@ todo:
 
 countdown:
     countdownConfig:
-      finishChristmas:
-        description: Finish for Christmas
-        date: 2024-12-19T16:00:00
-      amsterdam40thTrip:
-        description: Trip Amsterdam (Birthday)
-        date: 2025-02-17T00:00:00
-      bonusPaid:
-        description: Work bonus time
-        date: 2025-02-28T00:00:00
+      strongmanEU:
+        description: European Strongman
+        date: 2025-04-05T00:00:00
+      easterLongWeekend:
+        description: Easter long weekend
+        date: 2025-04-18T00:00:00
+      firstMayLongWeekend:
+        description: First May long weekend
+        date: 2025-05-02T00:00:00
+      perfAnnounceMonth:
+        description: Performance Month
+        date: 2025-11-15T00:00:00
 
 stock:
   url: https://api.polygon.io
@@ -54,8 +57,8 @@ stock:
     tickerId: BKNG
     tickerCurrency: USD
     targetCurrency: GBP
-    vestingAmount: 10
-    vestingDate: 2025-03-04T00:00:00
+    vestingAmount: 15
+    vestingDate: 2026-03-04T00:00:00
     cacheSeconds: 14400 # 4 hours
 
 currency:

@@ -10,12 +10,23 @@ const TVSportGuide: Component = () => {
                     <h2 className="card-title">
                         Sport on TV (3 days)
                     </h2>
-            <iframe
-                src="https://www.tvsportguide.com/widget/669be0d4899bf?heading=Events&border_color=custom&autoscroll=1&custom_colors=a6adbb,2a323c,ffffff"
-                    frameBorder="0" style="width: 300px; height: 400px; border: none"></iframe>
-        </div>
+                    {/*<script>var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent"; var eventer*/}
+                    {/*    =*/}
+                    {/*    window[eventMethod]; var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";*/}
+                    {/*    eventer(messageEvent,function(e) {{*/}
+                    {/*        if(*/}
+                    {/*        typeof e.data == "number" && e.data > 100) document.getElementById("outputFrame").height = e.data + "px";}},false);*/}
+                    {/*</script>*/}
+                    <iframe className="frameData" id="outputFrame"
+                            src="https://sport-tv-guide.live/sportwidget/ed8dac5c0a64?time_zone=Europe%2FLondon&fc=2&time12=0&sports=18,1,32,7,39,40,12&bg=f8f8f9&bgs=b7b7b7&grp=1&sd=0&lng=1"
+                            style="position:relative;border:none;height:40em;width: 35em;" frameBorder="0"></iframe>
+                    <div style="padding:5px;text-align:center;font-size:10px">Powered by <a
+                        href="https://sport-tv-guide.live">Live
+                        Sports TV Guide</a></div>
+                </div>
             </div>
         </div>
+
 
     );
 };
