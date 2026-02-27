@@ -7,12 +7,9 @@ const CountdownItem: Component = (countdown: Countdown) => {
         <div className="card bg-neutral text-neutral-content card-compact">
             <div className="card-body">
                 <h2 className="card-title">
-                    ⏲️ Countdown
+                    ⏲️ { countdown.description }
                 </h2>
                 <div className="stat">
-                    <div className="stat-desc">
-                        { countdown.description }
-                    </div>
                     <div className="stat-value">
                         <span>{ countdown.daysUntil }d </span>
                         <span>{ countdown.hoursUntil }h </span>

@@ -13,7 +13,7 @@ const fetchDisplayConfig = async() =>
 const App: Component = () => {
   const [displayConfig, { _, refetchDisplayConfig }] = createResource(fetchDisplayConfig) as DisplayConfig;
 
-  return (
+    return (
       <div>
           <div className="navbar bg-base-300">
               <div className="navbar-start"></div>
@@ -27,13 +27,15 @@ const App: Component = () => {
                   when={displayConfig()}
                   fallback={<Loading />}>
 
-                  <For each={displayConfig().displayItems}>{(item) =>
-                      <div>
-                        {DisplayItemConfigFetcher(item)}
-                      </div>
-                  }</For>
+                  <For each={displayConfig().displayItems}>
+                      {(item) =>
+                          <div>
+                            { DisplayItemConfigFetcher(item) }
+                          </div>
+                      }
+                  </For>
+                  <TVSportGuide />
               </Show>
-              <TVSportGuide />
           </div>
       </div>
   );

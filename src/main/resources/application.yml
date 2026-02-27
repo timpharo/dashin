@@ -34,18 +34,27 @@ todo:
 
 countdown:
     countdownConfig:
-      strongmanEU:
-        description: European Strongman
-        date: 2025-04-05T00:00:00
-      easterLongWeekend:
-        description: Easter long weekend
-        date: 2025-04-18T00:00:00
-      firstMayLongWeekend:
-        description: First May long weekend
-        date: 2025-05-02T00:00:00
-      perfAnnounceMonth:
-        description: Performance Month
-        date: 2025-11-15T00:00:00
+      newStart:
+        description: Start OP 🆕
+        date: 2026-03-02T08:00:00
+      stockVest:
+        description: Stock vesting 📈
+        date: 2026-03-04T00:00:00
+      cBirthday:
+        description: C Birthday 🎂
+        date: 2026-03-19T00:00:00
+      stag:
+        description: Stag Do 🦌
+        date: 2026-04-02T16:00:00
+      wedding:
+        description: Wedding 💒
+        date: 2026-05-29T16:00:00
+      greeceHoliday:
+        description: Greece Holiday 🇬🇷
+        date: 2026-07-17T16:00:00
+      abersochHoliday:
+        description: Abersoch Holiday 🏖️
+        date: 2026-08-06T16:00:00
 
 stock:
   url: https://api.polygon.io
@@ -57,7 +66,7 @@ stock:
     tickerId: BKNG
     tickerCurrency: USD
     targetCurrency: GBP
-    vestingAmount: 15
+    vestingAmount: 13
     vestingDate: 2026-03-04T00:00:00
     cacheSeconds: 14400 # 4 hours
 

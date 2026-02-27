@@ -2,8 +2,14 @@ import {Component, For, Match, Switch} from 'solid-js';
 import {StockEquityCalculationConfig} from "../types/StockEquityCalculationConfig";
 
 const StockEquityCalculation: Component = (stock: StockEquityCalculationConfig) => {
+    const taxRateHR = 1 - 0.3375;
+    const taxRateAR = 1 - 0.3935;
+    const taxFreeAmount = 2000;
+
     let targetValueCloseDayYesterday = stock.targetValueCloseDay;
     let targetValueOpenDayYesterday = stock.targetValueOpenDay;
+    let targetValueCloseDayYesterdayTaxable = targetValueCloseDayYesterday - taxFreeAmount;
+
     return (
     <div className="m-2 float-start">
         <div className="card bg-neutral text-neutral-content card-compact">
@@ -11,7 +17,12 @@ const StockEquityCalculation: Component = (stock: StockEquityCalculationConfig) 
             <div className="card-body">
                 <h2 className="card-title">💰 Stock equity calculation</h2>
 
-                <p className="text-xs">Equity value if vesting today</p>
+                <p className="text-xs">
+                    Equity value if vesting today
+                    {targetValueCloseDayYesterday > targetValueOpenDayYesterday
+                        ? <span className="badge badge-success">🔼</span>
+                        : <span className="badge badge-error">🔽</span>}
+                </p>
 
                 <div className="stats stats-vertical shadow">
                     <div className="stat bg-success text-success-content">
@@ -20,10 +31,15 @@ const StockEquityCalculation: Component = (stock: StockEquityCalculationConfig) 
                             {formatNumber(targetValueCloseDayYesterday, stock.targetCurrency)}
                         </div>
                         <div className="stat-desc text-success-content">
-                            {formatNumber(stock.valueCloseDay, stock.originalCurrency)}
-                        </div>
-                        <div className="stat-desc text-success-content">
-                            (After tax: {formatNumber((targetValueCloseDayYesterday * 0.58), stock.targetCurrency)})
+                            <ul>
+                                <li>Native price: {formatNumber(stock.valueCloseDay, stock.originalCurrency)}</li>
+                                <li>
+                                    After tax (HR): {formatNumber((targetValueCloseDayYesterdayTaxable * taxRateHR) + taxFreeAmount, stock.targetCurrency)}
+                                </li>
+                                <li>
+                                    After tax (AR): {formatNumber((targetValueCloseDayYesterdayTaxable * taxRateAR) + taxFreeAmount, stock.targetCurrency)}
+                                </li>
+                            </ul>
                         </div>
                     </div>
 
